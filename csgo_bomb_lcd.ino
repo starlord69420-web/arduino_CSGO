@@ -19,6 +19,8 @@ unsigned long bomb_secs_prev = 0;
 long interval_bomb = 1000;
 int show_info = 0;
 //
+
+
 unsigned long buzzerled_prev = 0;
 long buzzerled_step = 1000;
 int bomb_ms[9] = {600, 600, 500, 400, 300, 200, 150, 100, 50};
@@ -42,7 +44,7 @@ void setup() {
   toggleSwitch.setDebounceTime(50);
   analogWrite(A1, contrast);
   lcd.begin(16, 2);
-  lcd.print("DEACTIVATED");
+  lcd.print("BOMBASTIC-ASSAULT-DEVICE DEACTIVATED");
 }
 void BombBlew(){
   tone(A3, 0, 100);
@@ -56,21 +58,21 @@ void BombBlew(){
   AD_Bomb(false);
   return;
 }
-void AD_Bomb(bool status){ //Activate / Deactivate Bomb
+void AD_Bomb(bool status){ //Activate / Deactivate B-A-S
   password_store = "";
   pass_stored = 0;
   password = "";
   lcd.clear();
   delay(500);
   if(status == true){
-    lcd.print("ACTIVATED");
+    lcd.print("BOMBASTIC-ASSAULT-DEVICE ACTIVATED");
     bomb_status = 1;
     show_info = 0;
   }else{
     bomb_steps = 0;
     bomb_secs_prev = 0;
     buzzerled_prev = 0;
-    lcd.print("DEACTIVATED");
+    lcd.print("BOMBASTIC-ASSAULT-DEVICE DEACTIVATED");
     bomb_status = 0;
     bomb_count = -1;
   }
@@ -127,7 +129,7 @@ void loop(){
       lcd.print("DEFUSED");
       delay(1500);
       ClearScreen();
-      lcd.print("DEACTIVATED");
+      lcd.print("THANK-YOU FOR USING BOMBASTIC-ASSAULT-DEVICE ");
       bomb_status = 0;
       return;
     }
@@ -194,4 +196,3 @@ void loop(){
     }
   }
 }
-
